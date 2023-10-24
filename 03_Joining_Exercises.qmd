@@ -40,7 +40,8 @@ Join together the election results and urban/suburban/rural tables above, and th
 
 ```{r}
 
-
+results_urban_suburban_rural <- counties_elexresults%>%
+  inner_join(counties_rural_urban_suburban)
 
 
 ```
@@ -48,6 +49,12 @@ Join together the election results and urban/suburban/rural tables above, and th
 ```{r}
 
 
+results_urban_suburban_rural%>%
+  filter(state_code == "VA")%>%
+  group_by(rural_urban)%>%
+  summarise(mean_trump = mean(pct_r_2020))
+
+ 
 
 
 
@@ -60,6 +67,10 @@ Now using the joined dataset, come up with two groupings you find interesting or
 ```{r}
 
 
+results_urban_suburban_rural%>%
+  filter(state_code == "VA")%>%
+  group_by(rural_urban)%>%
+  summarise(mean_trump = mean(pct_r_2016))
 
 
 ```
@@ -68,7 +79,10 @@ Now using the joined dataset, come up with two groupings you find interesting or
 ```{r}
 
 
-
+results_urban_suburban_rural%>%
+  filter(state_code == "VA")%>%
+  group_by(rural_urban)%>%
+  summarise(mean_marigin = mean(margin))
 
 
 ```
